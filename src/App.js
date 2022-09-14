@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import { Col, Row } from 'react-simple-flex-grid'
-import { MicrophoneIcon } from '@heroicons/react/24/solid'
+import { MicrophoneIcon, CameraIcon, ArrowLeftOnRectangleIcon,TvIcon } from '@heroicons/react/24/solid'
 
 import {
   MeetingConsumer,
@@ -40,9 +40,15 @@ function Controls() {
   const { leave, toggleMic, toggleWebcam } = useMeeting();
   return (
     <div>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={leave}>Leave</button>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleMic}>toggleMic</button>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleWebcam}>toggleWebcam</button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={leave}>
+        <ArrowLeftOnRectangleIcon className="h-5 w-5" />
+      </button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleMic}>
+        <MicrophoneIcon className="h-5 w-5" />
+      </button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={toggleWebcam}>
+        <CameraIcon className="h-5 w-5" />
+      </button>
     </div>
   );
 }
@@ -138,7 +144,7 @@ const ParticipantView = (props) => {
         </div>
       ) : null}
 
-      <br/>
+      <br />
     </div>
   )
 
@@ -159,15 +165,23 @@ function MeetingGrid(props) {
       {joined ?
         (
           <div className="flex gap-2">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={leave}>Leave</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleMic}>toggleMic</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleWebcam}>toggleWebcam</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleScreenShare}>toggleScreenShare</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={leave}>
+              <ArrowLeftOnRectangleIcon className="h-5 w-5" />
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={toggleMic}>
+              <MicrophoneIcon className="h-5 w-5" />
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={toggleWebcam}>
+              <CameraIcon className="h-5 w-5" />
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={toggleScreenShare}>
+            <TvIcon className="h-5 w-5" />
+            </button>
           </div>
         )
         :
         (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"onClick={joinMeeting}>Join</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={joinMeeting}>Join</button>
         )
       }
 
