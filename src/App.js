@@ -185,11 +185,22 @@ function MeetingGrid(props) {
         )
       }
 
+      {/* <div className='grid grid-cols-1' >
+        {chunk([...participants.keys()]).map((k) => (
+          <div key={k} className='grid grid-cols-2' >
+            {k.map((l) => (
+              <div>
+                <ParticipantView key={l} participantId={l} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div> */}
       <div>
         {chunk([...participants.keys()]).map((k) => (
-          <Row key={k} gutter={80}>
+          <Row key={k} span={2} gutter={80}>
             {k.map((l) => (
-              <Col span={4}>
+              <Col span={2}>
                 <ParticipantView key={l} participantId={l} />
               </Col>
             ))}
