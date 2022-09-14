@@ -1,4 +1,4 @@
-const LOCAL_SERVER_URL = "https://melo-node.herokuapp.com/"
+const LOCAL_SERVER_URL = "http://localhost:9000"
 export const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiI3MGMxNjA2ZC1jNzI2LTQ5YWYtYTgxYy03ZmY5YTE3Yzk2NWUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MzA5NTI3OCwiZXhwIjoxNjYzNzAwMDc4fQ.51lm7hOBbhlNhqjN_ruNVk4jB3g8b0lMeadglwxCEBA";
 
 
