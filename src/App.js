@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import { Col, Row } from 'react-simple-flex-grid'
-import { MicrophoneIcon, CameraIcon, ArrowLeftOnRectangleIcon,TvIcon } from '@heroicons/react/24/solid'
+import { MicrophoneIcon, CameraIcon, ArrowLeftOnRectangleIcon, TvIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
 
 import {
   MeetingConsumer,
@@ -20,17 +20,17 @@ const chunk = (arr) => {
 
 function JoinScreen({ getMeetingAndToken, updateMeetingId }) {
   return (
-    <div className="flex justify-center items-center p-10 gap-3">
+    <div className="flex justify-center items-center flex-col p-10 gap-5">
       <input
         type="text"
         placeholder="Enter Meeting Id"
         onChange={(e) => {
           updateMeetingId(e.target.value);
         }}
-        className='border-2 p-3 rounded'
+        className='border-2 p-3 rounded shadow-lg'
       />
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={getMeetingAndToken}>Join</button>
-      {" or "}
+      <div className="text-lg font-semibold">{" or "}</div>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={getMeetingAndToken}>Create Meeting</button>
     </div>
   );
@@ -120,14 +120,15 @@ const ParticipantView = (props) => {
   return (
     <div className="flex flex-col gap-8 my-5" key={props.participantId}>
       <audio ref={micRef} autoPlay />
-      {webcamRef || micOn ? (
-        <div className="border-2 p-3 text-center rounded shadow-2xl">
+      {webcamRef ? (
+        <div className="border-2 p-3 text-center rounded-xl shadow-2xl h-full w-full">
           <h2 className="mb-3 text-2xl font-semibold">Web Cam View</h2>
           <video
             height={"100%"}
             width={"100%"}
             ref={webcamRef}
             autoPlay
+            className="rounded-lg"
           />
         </div>
       ) : null}
@@ -161,11 +162,16 @@ function MeetingGrid(props) {
   };
   return (
     <div className="flex justify-center items-center p-10 gap-3 flex-col">
-      <header className="text-3xl font-bold">Meeting ID: {props.meetingId}</header>
+      <div className="flex gap-5 items-center  border-2 p-3 rounded-lg">
+        <div className="text-2xl font-bold">Meeting ID:</div>
+        <span className="text-xl font-semibold">{props.meetingId}</span>
+        <div onClick={() => { navigator.clipboard.writeText(props.meetingId) }}
+        ><ClipboardDocumentListIcon className="h-6 w-6 cursor-pointer" /></div>
+      </div>
       {joined ?
         (
           <div className="flex gap-2">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={leave}>
+            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={leave}>
               <ArrowLeftOnRectangleIcon className="h-5 w-5" />
             </button>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={toggleMic}>
@@ -175,7 +181,7 @@ function MeetingGrid(props) {
               <CameraIcon className="h-5 w-5" />
             </button>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={toggleScreenShare}>
-            <TvIcon className="h-5 w-5" />
+              <TvIcon className="h-5 w-5" />
             </button>
           </div>
         )
@@ -185,9 +191,9 @@ function MeetingGrid(props) {
         )
       }
 
-      {/* <div className='grid grid-cols-1' >
+      <div className='grid grid-cols-1' >
         {chunk([...participants.keys()]).map((k) => (
-          <div key={k} className='grid grid-cols-2' >
+          <div key={k} className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-5' >
             {k.map((l) => (
               <div>
                 <ParticipantView key={l} participantId={l} />
@@ -195,18 +201,18 @@ function MeetingGrid(props) {
             ))}
           </div>
         ))}
-      </div> */}
-      <div>
+      </div>
+      {/* <div>
         {chunk([...participants.keys()]).map((k) => (
-          <Row key={k} span={2} gutter={80}>
+          <Row key={k} gutter={80}>
             {k.map((l) => (
-              <Col span={2}>
-                <ParticipantView key={l} participantId={l} />
+              <Col span={4} key={l}>
+                <ParticipantView participantId={l} />
               </Col>
             ))}
           </Row>
         ))}
-      </div>
+      </div> */}
 
     </div>
   );
