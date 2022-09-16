@@ -58,7 +58,7 @@ const ParticipantView = (props) => {
   const screenShareRef = useRef(null);
 
   const {
-    // displayName,
+    displayName,
     webcamStream,
     micStream,
     screenShareStream,
