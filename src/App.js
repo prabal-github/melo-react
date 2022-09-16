@@ -64,7 +64,8 @@ const ParticipantView = (props) => {
     screenShareStream,
     webcamOn,
     micOn,
-    screenShareOn
+    screenShareOn,
+    isLocal
   } = useParticipant(props.participantId);
 
   useEffect(() => {
@@ -116,9 +117,10 @@ const ParticipantView = (props) => {
     }
   }, [screenShareStream, screenShareOn]);
 
+
   return (
     <div className="flex flex-col gap-8 my-5" key={props.participantId}>
-      <audio ref={micRef} autoPlay />
+      <audio ref={micRef} muted={isLocal} autoPlay />
       {webcamRef ? (
         <div className="border-2 p-3 text-center rounded-xl shadow-2xl h-full w-full">
           <h2 className="mb-3 text-2xl font-semibold">Web Cam View</h2>
