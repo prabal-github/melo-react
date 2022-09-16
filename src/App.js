@@ -58,7 +58,7 @@ const ParticipantView = (props) => {
   const screenShareRef = useRef(null);
 
   const {
-    displayName,
+    //displayName,
     webcamStream,
     micStream,
     screenShareStream,
@@ -233,6 +233,7 @@ function Container(props) {
           {[...participants.keys()].map((participantId) => (
             <VideoComponent participantId={participantId} key={participantId} />
           ))}
+          <div>This is a line</div>
         </div>
       ) : (
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join</button>
