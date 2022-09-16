@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactPlayer from "react-player";
-import { Col, Row } from 'react-simple-flex-grid'
 import { MicrophoneIcon, CameraIcon, ArrowLeftOnRectangleIcon, TvIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
 
 import {
@@ -94,7 +93,7 @@ const ParticipantView = (props) => {
         micRef.current.srcObject = mediaStream;
         micRef.current
           .play()
-          .catch((error) => console.error("mic  play() failed", error));
+          .catch((error) => console.error("mic play() failed", error));
       } else {
         micRef.current.srcObject = null;
       }
@@ -110,7 +109,7 @@ const ParticipantView = (props) => {
         screenShareRef.current.srcObject = mediaStream;
         screenShareRef.current
           .play()
-          .catch((error) => console.error("mic  play() failed", error));
+          .catch((error) => console.error("mic play() failed", error));
       } else {
         screenShareRef.current.srcObject = null;
       }
@@ -148,8 +147,6 @@ const ParticipantView = (props) => {
       <br />
     </div>
   )
-
-
 }
 
 function MeetingGrid(props) {
