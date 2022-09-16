@@ -233,7 +233,7 @@ function Container(props) {
           {[...participants.keys()].map((participantId) => (
             <VideoComponent participantId={participantId} key={participantId} />
           ))}
-          <div>This is a line</div>
+          <h1>This is a h1 tag</h1>
         </div>
       ) : (
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join</button>
